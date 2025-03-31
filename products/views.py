@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from .models import Product, Category
@@ -13,7 +13,7 @@ def index(request):
 
     return render(request, 'products/index.html', context)
 
-
+@login_required
 def detail(request, product_id):
     product = Product.objects.get(id=product_id)
     context = {

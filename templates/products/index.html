@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <h1>Productos en Venta</h1>
+    <div class="container">
+        <div class="product-grid">  <!-- Añadir esta clase para la grilla -->
+            {% for product in products %}
+                <div class="product-card"> <!-- Cambié la clase 'card' a 'product-card' -->
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <div class="card-content">
+                        <h2>{{ product.name }}</h2>
+                        <p>{{ product.category }}</p>
+                        <p>{{ product.description }}</p>
+                        <p class="price">{{ product.price }}</p>
+                        <p><strong>SKU:</strong> {{ product.sku }}</p>
+                        <a href="{% url 'detail' product.id %}" class="details-button">Ver Detalle</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

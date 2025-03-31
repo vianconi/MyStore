@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="product-detail">
+        <h1>{{ product.name }}</h1>
+
+        <div class="detail-container">
+            <img src="{{ product.image.url }}" alt="Imagen de {{ product.name }}" class="product-image">
+
+            <div class="detail-content">
+                <p><strong>Categoría:</strong> {{ product.category }}</p>
+                <p class="price">{{ product.price }}</p>
+                <p><strong>Descripción:</strong> {{ product.description }}</p>
+                <p><strong>SKU:</strong> {{ product.sku }}</p>
+                
+                <a href="{% url 'category' category_id=product.category.id %}" class="category-link">Ver más productos de esta categoría</a>
+            </div>
+        </div>
+
+        <a href="{% url 'products' %}" class="back-button">Volver a la tienda</a>
+    </div>
+{% endblock %}

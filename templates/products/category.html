@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <h1>Productos en Venta</h1>
+
+    <h2>{{ category.name }}</h2>
+    <p>{{ category.description }}</p>
+
+    <div class="container">
+        {% if products %}
+            {% for product in products %}
+                <div class="card">
+                    <img src="{{ product.image.url }}" alt="Producto {{ product.name }}">
+                    <div class="card-content">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p class="price">{{ product.price }}</p>
+                        <p><strong>SKU:</strong> {{ product.sku }}</p>
+                        <a href="{% url 'detail' product_id=product.id %}" class="details-button">Ver Detalle</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay productos disponibles en esta categoría.</p>
+        {% endif %}
+    </div>
+{% endblock %}
